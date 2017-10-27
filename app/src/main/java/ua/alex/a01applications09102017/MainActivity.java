@@ -78,13 +78,17 @@ public class MainActivity extends AppCompatActivity {
         String sEmail = editTextEmail.getText().toString();
         String sPostalAdress = editTextPostalAdress.getText().toString();
 
-        intent.putExtra(EXTRA_KEY_NAME, sName);
-        intent.putExtra(EXTRA_KEY_SURNAME, sSurname);
-        intent.putExtra(EXTRA_KEY_NUMBER, sNumber);
-        intent.putExtra(EXTRA_KEY_DATE, sDate);
-        intent.putExtra(EXTRA_KEY_EMAIL, sEmail);
-        intent.putExtra(EXTRA_KEY_POSTALADRESS, sPostalAdress);
+        if (!(sName.isEmpty())&&!(sSurname.isEmpty())&&!(sNumber.isEmpty())&&!(sDate.isEmpty())&&!(sEmail.isEmpty())&&!(sPostalAdress.isEmpty())) {
+            intent.putExtra(EXTRA_KEY_NAME, sName);
+            intent.putExtra(EXTRA_KEY_SURNAME, sSurname);
+            intent.putExtra(EXTRA_KEY_NUMBER, sNumber);
+            intent.putExtra(EXTRA_KEY_DATE, sDate);
+            intent.putExtra(EXTRA_KEY_EMAIL, sEmail);
+            intent.putExtra(EXTRA_KEY_POSTALADRESS, sPostalAdress);
 
-        startActivity(intent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+            startActivity(intent);
+        }
     }
 }

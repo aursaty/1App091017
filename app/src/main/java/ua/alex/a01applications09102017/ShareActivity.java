@@ -61,6 +61,8 @@ public class ShareActivity extends AppCompatActivity {
         intent.putExtra(MainActivity.EXTRA_KEY_EMAIL, sEmail);
         intent.putExtra(MainActivity.EXTRA_KEY_POSTALADRESS, sPostalAdress);
 
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
         startActivity(intent);
     }
 }
