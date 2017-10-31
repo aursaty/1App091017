@@ -3,9 +3,11 @@ package ua.alex.a01applications09102017;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         String sEmail = editTextEmail.getText().toString();
         String sPostalAdress = editTextPostalAdress.getText().toString();
 
+        Log.d("LLK",sName);
         if (!(sName.isEmpty())&&!(sSurname.isEmpty())&&!(sNumber.isEmpty())&&!(sDate.isEmpty())&&!(sEmail.isEmpty())&&!(sPostalAdress.isEmpty())) {
             intent.putExtra(EXTRA_KEY_NAME, sName);
             intent.putExtra(EXTRA_KEY_SURNAME, sSurname);
@@ -89,6 +92,50 @@ public class MainActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
             startActivity(intent);
+        }
+        else {
+            String toastText = "";
+            int counterEmpty = 0;
+            if (sName.isEmpty()) {
+                counterEmpty++;
+                System.out.print(sName);
+                if (toastText.equals("")) {
+                    toastText = editTextName.getHint().toString();
+                }
+            }
+            if (sSurname.isEmpty()) {
+                counterEmpty++;
+                if (toastText.equals("")) {
+                    toastText = editTextSurname.getHint().toString();
+                }
+            }
+            if (sNumber.isEmpty()) {
+                counterEmpty++;
+                if (toastText.equals("")) {
+                    toastText = editTextNumber.getHint().toString();
+                }
+            }
+            if (sDate.isEmpty()) {
+                counterEmpty++;
+                if (toastText.equals("")) {
+                    toastText = editTextDate.getHint().toString();
+                }
+            }
+            if (sEmail.isEmpty()) {
+                counterEmpty++;
+                if (toastText.equals("")) {
+                    toastText = editTextEmail.getHint().toString();
+                }
+            }
+            if (sPostalAdress.isEmpty()) {
+                counterEmpty++;
+//                System.out.print(toastText + toastText.length());
+                if (toastText.equals("")) {
+                    toastText = editTextPostalAdress.getHint().toString();
+                }
+            }
+            Toast toast = Toast.makeText(getApplicationContext(), "You didn't enter " + counterEmpty + " values started at " + toastText, Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 }
